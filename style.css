@@ -1,0 +1,234 @@
+/* 🕸️ Base layout */
+body {
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.96); /* slightly transparent black to let cobwebs show through */
+  font-family: 'Creepster', cursive, sans-serif;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* 🕸️ Cobwebs layered behind the bottom of the screen */
+/* 🕸️ Cobwebs layered lower and more subtle */
+
+
+
+/* 🎃 Heading */
+.heading {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  margin: 0;
+  padding: 10px 0;
+  text-align: center;
+  font-size: 3rem;
+  color: orange;
+  text-shadow: 2px 2px 6px black;
+  background: transparent;
+  z-index: 9999;
+}
+
+/* 🌌 Sky background */
+.sky {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: url('image/background.png') no-repeat center center;
+  background-size: contain;
+  background-color: transparent;
+  overflow: hidden;
+  z-index: 1;
+}
+
+/* 🧙‍♀️ Witch animation */
+.witch {
+  position: absolute;
+  top: 350px;
+  left: -200px;
+  width: 150px;
+  animation: flyWitch 10s linear infinite;
+  z-index: 2;
+}
+
+@keyframes flyWitch {
+  0% { left: -200px; transform: translateY(0); }
+  50% { transform: translateY(-50px); }
+  100% { left: 110%; transform: translateY(0); }
+}
+
+/* 🕷️ Spider animation */
+.spider {
+  position: absolute;
+  top: -100px;
+  left: 80%;
+  width: 120px;
+  animation: dropSpider 6s infinite ease-in-out;
+  z-index: 2;
+}
+
+@keyframes dropSpider {
+  0% { top: -100px; }
+  50% { top: 60%; }
+  100% { top: -100px; }
+}
+
+/* 🎃 Pumpkins */
+.pumpkins {
+  position: absolute;
+  bottom: 10px;
+  right: 10%;
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+
+.pumpkin {
+  width: 100px;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* 🐈 Cat */
+.cat {
+  position: absolute;
+  bottom: 10px;
+  left: 18%;
+  transform: translateX(-50%);
+  width: 52vw;
+  max-width: 420px;
+  min-width: 240px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* 📱 Mobile adjustments */
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .witch {
+    width: 100px;
+  }
+
+  .spider {
+    width: 80px;
+  }
+
+  .pumpkin {
+    width: 40px;
+  }
+
+  .cat {
+    width: 60px;
+  }
+}
+
+/* 🚪 Door */
+#door {
+  position: absolute;
+  bottom: 16.2%;
+  left: 46.3%;
+  width: 70px;
+  height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffb84d;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black, 0 0 4px #ff9900;
+  cursor: pointer;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0);
+  transition: transform 0.2s ease, color 0.3s ease;
+}
+
+#door:hover {
+  transform: scale(1.08);
+  color: #ffd480;
+  text-shadow: 0 0 8px #ffcc66, 0 0 12px #ffaa00;
+}
+
+/* 🎮 Game Section */
+#game {
+  display: none;
+  text-align: center;
+  margin-top: 40px;
+  color: orange;
+  font-family: 'Creepster', cursive, sans-serif;
+  position: relative;
+  z-index: 2; /* ensures game stays above cobwebs */
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 10px;
+  justify-content: center;
+  margin: 20px auto;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid orange;
+  font-size: 50px;
+  cursor: pointer;
+  color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#reset {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: orange;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Creepster', cursive;
+  font-size: 1.2rem;
+  color: black;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 1.4rem;
+}
+/* ✨ Twinkling stars near the bottom */
+/* 🪄 Make twinkles appear behind the game but above the background */
+.twinkle {
+  position: fixed;
+  bottom: 0;
+  width: 4px;
+  height: 4px;
+  background: radial-gradient(white, rgba(255,255,255,0));
+  border-radius: 50%;
+  opacity: 0;
+  animation: twinkle 4s infinite ease-in-out;
+  z-index: 1; /* visible but not blocking */
+  pointer-events: none; /* so they never block clicks */
+}
+
+/* Optional: orange glow for Halloween style */
+.twinkle.orange {
+  background: radial-gradient(orange, rgba(255,165,0,0));
+}
+
+/* Subtle float-up shimmer */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0;
+    transform: translateY(0) scale(0.5);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-10px) scale(1.3);
+  }
+}

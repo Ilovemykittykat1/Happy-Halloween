@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spooky Halloween Night</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1 class="heading">Happy Halloween</h1>
+  <button id="stop-music" style="display:none;">🔇 Stop Music</button>
+
+  <div class="sky">
+    <img src="image/witch.png" class="witch" />
+    <img src="image/spider.png" class="spider" />
+
+    <div class="pumpkins">
+      <img src="image/pumpkin.png" class="pumpkin" />
+      <img src="image/pumpkin.png" class="pumpkin" />
+    </div>
+
+    <img src="image/cat.png" class="cat" />
+    <div id="door">Enter</div>
+  </div>
+
+  <section id="game" style="display:none;">
+    <h2>Tic-Tac-Toe: Pumpkins vs Ghosts</h2>
+    <div class="board" id="board">
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+      <div class="cell"></div><div class="cell"></div><div class="cell"></div>
+    </div>
+    <button id="reset">Play Again</button>
+    <p id="status"></p>
+  </section>
+
+  <audio id="bg-music" src="song.mp3" loop preload="auto"></audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
